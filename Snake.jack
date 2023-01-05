@@ -9,18 +9,20 @@ Class Snake {
         return this;
     }
     
-    // Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
+    // TODO: Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
     function eat() {
         let HeadSquare = Squares[HeadIndex];
         HeadIndex = HeadIndex + 1;
         Squares[HeadIndex] = HeadSquare; //Square.new(HeadIndex.x, HeadIndex.y, HeadIndex.currentDirection, 10)
+        // TODO: Don't forget to dispose fruit
+
         return;
     }
 
     function changeDirection(Condition DirectionCondition) {
         let currentIndex = 0;
         while(~(currentIndex = HeadIndex + 1)) {
-            Squares[currentIndex].AddDirectionCondition(DirectionCondition);
+            do Squares[currentIndex].AddDirectionCondition(DirectionCondition);
             currentIndex = currentIndex + 1;
         }
 
@@ -34,8 +36,8 @@ Class Snake {
             currentIndex = currentIndex - 1;
         }
 
-        Squares.dispose();
-        deAlloc(this);
+        do Squares.dispose();
+        do Memory.deAlloc(this);
         
         return;
     }
