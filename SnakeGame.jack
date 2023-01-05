@@ -76,7 +76,7 @@ class SnakeGame {
       let exit = false;
       let isLoose = false;
       
-      while ((~exit) and (~isLoose)) {
+      while ((~exit) & (~isLoose)) {
          // waits for a key to be pressed
          while (key = 0) {
             let key = Keyboard.keyPressed();
