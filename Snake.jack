@@ -1,13 +1,25 @@
 Class Snake {
     field Array Squares;
     field Array Conditions;
+    field int LastSquareIndex;
 
     constructor Snake new(int Ax, int Ay, int Asize) {
         let Squares = function Array new(50);
         let Conditions = function Array new(10);
-        Squares[0] = Square.new(0, 0, 30);
+        Squares[0] = Square.new(0, 0, 10);
         do Squares[0].draw();
         return this;
+    }
+ 
+    function Eat() {
+        LastSquare = Squares[LastSquareIndex];
+        LastSquareIndex = LastSquareIndex + 1;
+        Move();
+        Squares[LastSquareIndex] = LastSquare; //Square.new(LastSquare.x, LastSquare.y, LastSquare.currentDirection, 10)
+    }
+
+    function Move() {
+        
     }
 
     function ChangeDirection() {
