@@ -25,26 +25,30 @@ class Vertebra {
    }
 
    method void move(DirectionCondition condition) {
-      conditions[lastConditionIndex + 1] = condition;
-      lastConditionIndex = lastConditionIndex + 1;
+      addCondition(condition);
       if((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
          moveByDirection(conditions[currentConditionIndex].direction);
          currentDirection = conditions[currentConditionIndex].direction;
       }
 
       if(~(x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
-         moveByDirection(currentDirection)
+         moveByDirection(currentDirection);
       }
       
-      currentConditionIndex = currentConditionIndex + 1
+      currentConditionIndex = currentConditionIndex + 1;
       return;
    }
 
+   method void addCondition(DirectionCondition condition) {
+      conditions[lastConditionIndex + 1] = condition;
+      lastConditionIndex = lastConditionIndex + 1;
+   }
+
    method void moveByDirection(int direction) {
-         if (direction = 1) { do moveUp(); }
-         if (direction = 2) { do moveDown(); }
-         if (direction = 3) { do moveLeft(); }
-         if (direction = 4) { do moveRight(); }
+      if (direction = 1) { do moveUp(); }
+      if (direction = 2) { do moveDown(); }
+      if (direction = 3) { do moveLeft(); }
+      if (direction = 4) { do moveRight(); }
    }
 
    method void dispose() {
