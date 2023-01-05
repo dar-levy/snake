@@ -1,3 +1,10 @@
 class DirectionCondition {
-    
+    field int x, y;
+    field String direction;
+
+    constructor DirectionCondition(int Ax, int Ay, String Adirection) {
+        let x = Ax;
+        let y = Ay;
+        let direction = Adirection;
+    }
 }
