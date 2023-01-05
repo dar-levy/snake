@@ -31,7 +31,7 @@ class Vertebra {
          currentDirection = conditions[currentConditionIndex].direction;
       }
 
-      if(~(x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
+      if(~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))){
          moveByDirection(currentDirection);
       }
       
@@ -59,30 +59,6 @@ class Vertebra {
    method void draw() {
       do Screen.setColor(true);
       do Screen.drawRectangle(x, y, x + size, y + size);
-      return;
-   }
-
-   method void erase() {
-      do Screen.setColor(false);
-      do Screen.drawRectangle(x, y, x + size, y + size);
-      return;
-   }
-
-   method void incSize() {
-      if (((y + size) < 254) & ((x + size) < 510)) {
-         do erase();
-         let size = size + 2;
-         do draw();
-      }
-      return;
-   }
-
-   method void decSize() {
-      if (size > 2) {
-         do erase();
-         let size = size - 2;
-         do draw();
-      }
       return;
    }
 
