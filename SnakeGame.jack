@@ -37,6 +37,7 @@ class SnakeGame {
       let currentFruitIndex = 0;
       while(currentFruitIndex < fruitsSize) {
          do fruits[currentFruitIndex].dispose();
+         currentFruitIndex = currentFruitIndex + 1;
       }
       do Memory.deAlloc(this);
       return;
