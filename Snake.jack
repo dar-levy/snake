@@ -1,24 +1,42 @@
 Class Snake {
     field Array Squares;
-    field Array Conditions;
     field int HeadIndex;
 
     constructor Snake new(int Ax, int Ay, int Asize) {
         let Squares = function Array new(50);
-        let Conditions = function Array new(10);
         Squares[0] = Square.new(0, 0, 10);
         do Squares[0].draw();
         return this;
     }
     
     // Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
-    function Eat() {
-        HeadSquare = Squares[HeadIndex];
+    function eat() {
+        let HeadSquare = Squares[HeadIndex];
         HeadIndex = HeadIndex + 1;
         Squares[HeadIndex] = HeadSquare; //Square.new(HeadIndex.x, HeadIndex.y, HeadIndex.currentDirection, 10)
+        return;
     }
 
-    function ChangeDirection() {
+    function changeDirection(Condition DirectionCondition) {
+        let currentIndex = 0;
+        while(~(currentIndex = HeadIndex + 1)) {
+            Squares[currentIndex].AddDirectionCondition(DirectionCondition);
+            currentIndex = currentIndex + 1;
+        }
+
+        return;
+    }
+
+    function dispose() {
+        let currentIndex = HeadIndex;
+        while(~(currentIndex = -1)) {
+            Squares[currentIndex].dispose();
+            currentIndex = currentIndex - 1;
+        }
+
+        Squares.dispose();
+        deAlloc(this);
         
+        return;
     }
 }
