@@ -27,12 +27,12 @@ class Vertebra {
    method void move(DirectionCondition condition) {
       addCondition(condition);
       if((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
-         moveByDirection(conditions[currentConditionIndex].direction);
+         do moveByDirection(conditions[currentConditionIndex].direction);
          currentDirection = conditions[currentConditionIndex].direction;
       }
 
       if(~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))){
-         moveByDirection(currentDirection);
+         do moveByDirection(currentDirection);
       }
       
       currentConditionIndex = currentConditionIndex + 1;

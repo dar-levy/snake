@@ -16,16 +16,28 @@
 
 class SnakeGame {
    field Snake snake;
+   field Array fruits;
+   field int fruitsSize;
 
    constructor SnakeGame new() {
+      let fruitsSize = 5;
       let snake = Snake.new();
-      let direction = 0;  // initial state is no movement
+      let fruits = Array.new(fruitsSize);
+      fruits[0] = Fruit.new(50,50);
+      fruits[1] = Fruit.new(30,30);
+      fruits[2] = Fruit.new(70,70);
+      fruits[3] = Fruit.new(100,100);
+      fruits[4] = Fruit.new(170,170);
       return this;
    }
 
    /** Disposes this game. */
    method void dispose() {
-      do square.dispose();
+      do snake.dispose();
+      let currentFruitIndex = 0;
+      while(currentFruitIndex < fruitsSize) {
+         do fruits[currentFruitIndex].dispose();
+      }
       do Memory.deAlloc(this);
       return;
    }
