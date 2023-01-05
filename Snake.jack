@@ -10,11 +10,12 @@ Class Snake {
         do Squares[0].draw();
         return this;
     }
- 
+    
+    // Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
     function Eat() {
         HeadSquare = Squares[HeadIndex];
         HeadIndex = HeadIndex + 1;
-        Squares[HeadIndex] = HeadSquare; //Square.new(LastSquare.x, LastSquare.y, LastSquare.currentDirection, 10)
+        Squares[HeadIndex] = HeadSquare; //Square.new(HeadIndex.x, HeadIndex.y, HeadIndex.currentDirection, 10)
     }
 
     function ChangeDirection() {
