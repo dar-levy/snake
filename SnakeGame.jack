@@ -19,6 +19,7 @@ class SnakeGame {
    field Array fruits;
    field int fruitsSize;
    field int currentFruitIndex;
+   field int currentDirection;
    field int moveGap;
 
    constructor SnakeGame new() {
@@ -47,15 +48,15 @@ class SnakeGame {
       return;
    }
 
-   method boolean isNextMoveValid() {
+   method boolean isNextMoveNotValid() {
       let snakeHead = snake.vertebras[snake.headIndex];
       let fruit = fruits[currentFruitIndex];
-      if(snakeHead.currentDirection = 1) { if ((snake.y + moveGap < 510)) { return true; } }
-      if(snakeHead.currentDirection = 2) { if ((snake.y - moveGap < 510)) { return true; } }
-      if(snakeHead.currentDirection = 3) { if ((snake.x - moveGap < 254)) { return true; } }
-      if(snakeHead.currentDirection = 4) { if ((snake.x + moveGap < 254)) { return true; } }
+      if(snakeHead.currentDirection = 1) { if ((snake.y + moveGap < 510)) { return false; } }
+      if(snakeHead.currentDirection = 2) { if ((snake.y - moveGap < 510)) { return false; } }
+      if(snakeHead.currentDirection = 3) { if ((snake.x - moveGap < 254)) { return false; } }
+      if(snakeHead.currentDirection = 4) { if ((snake.x + moveGap < 254)) { return false; } }
       
-      return false;
+      return true;
    }
 
    method void isNextMoveFruit() {
@@ -71,26 +72,36 @@ class SnakeGame {
    method void run() {
       var char key;  // the key currently pressed by the user
       var boolean exit;
+      var boolean isLoose;
       let exit = false;
+      let isLoose = false;
       
-      while (~exit) {
+      while ((~exit) and (~isLoose)) {
          // waits for a key to be pressed
          while (key = 0) {
             let key = Keyboard.keyPressed();
-            do moveSquare();
+            let isLoose = isNextMoveNotValid();
+            let isFruit = isNextMoveFruit();
+            if (isFruit) { snake.eat(); }
+            if ((~(isFruit)) & (~(exit))){ do snake.move();}
+            if (isLoose) { Output.printString("GameOver")}
+            if (exit) { Output.printString("See you next time")}
          }
          if (key = 81)  { let exit = true; }     // q key
-         if (key = 90)  { do square.decSize(); } // z key
-         if (key = 88)  { do square.incSize(); } // x key
-         if (key = 131) { let direction = 1; }   // up arrow
-         if (key = 133) { let direction = 2; }   // down arrow
-         if (key = 130) { let direction = 3; }   // left arrow
-         if (key = 132) { let direction = 4; }   // right arrow
+         if (key = 131) { let currentDirection = 1; }   // up arrow
+         if (key = 133) { let currentDirection = 2; }   // down arrow
+         if (key = 130) { let currentDirection = 3; }   // left arrow
+         if (key = 132) { let currentDirection = 4; }   // right arrow
 
          // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
-            do moveSquare();
+            let isLoose = isNextMoveNotValid();
+            let isFruit = isNextMoveFruit();
+            if (isFruit) { snake.eat(); }
+            if ((~(isFruit)) & (~(exit))){ do snake.move();}
+            if (isLoose) { Output.printString("GameOver")}
+            if (exit) { Output.printString("See you next time")}
          }
      } // while
      return;
