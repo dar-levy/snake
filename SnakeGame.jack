@@ -78,28 +78,49 @@ class SnakeGame {
       
       while ((~exit) & (~isLoose)) {
          // waits for a key to be pressed
+         let snakeHead = snake.vertebras[snake.headIndex];
          while (key = 0) {
             let key = Keyboard.keyPressed();
-            let isLoose = isNextMoveNotValid();
             let isFruit = isNextMoveFruit();
+            let isLoose = isNextMoveNotValid();
+            let snakeHead = snake.vertebras[snake.headIndex];
+            let condition = DirectionCondition.new(-1, -1, -1);
             if (isFruit) { snake.eat(); }
-            if ((~(isFruit)) & (~(exit))){ do snake.move();}
+            if ((~(isFruit)) & (~(exit))){ do snake.move(condition);}
             if (isLoose) { Output.printString("GameOver")}
             if (exit) { Output.printString("See you next time")}
          }
          if (key = 81)  { let exit = true; }     // q key
-         if (key = 131) { let currentDirection = 1; }   // up arrow
-         if (key = 133) { let currentDirection = 2; }   // down arrow
-         if (key = 130) { let currentDirection = 3; }   // left arrow
-         if (key = 132) { let currentDirection = 4; }   // right arrow
+         if (key = 131) { 
+            let currentDirection = 1;
+            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
+            snake.move(condition);
+         }   // up arrow
+         if (key = 133) { 
+            let currentDirection = 2;
+            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
+            snake.move(condition);
+         }   // down arrow
+         if (key = 130) { 
+            let currentDirection = 3;
+            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
+            snake.move(condition);
+         }   // left arrow
+         if (key = 132) {
+            let currentDirection = 4;
+            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
+            snake.move(condition);
+         }   // right arrow
 
          // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
-            let isLoose = isNextMoveNotValid();
             let isFruit = isNextMoveFruit();
+            let isLoose = isNextMoveNotValid();
+            let snakeHead = snake.vertebras[snake.headIndex];
+            let condition = DirectionCondition.new(-1, -1, -1);
             if (isFruit) { snake.eat(); }
-            if ((~(isFruit)) & (~(exit))){ do snake.move();}
+            if ((~(isFruit)) & (~(exit))){ do snake.move(condition);}
             if (isLoose) { Output.printString("GameOver")}
             if (exit) { Output.printString("See you next time")}
          }
