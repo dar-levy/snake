@@ -1,4 +1,4 @@
-Class Snake {
+class Snake {
     field Array Squares;
     field int HeadIndex;
 
