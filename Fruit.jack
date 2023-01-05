@@ -1,24 +1,24 @@
 class Fruit {
     field int x, y;
-    field int size;
+    field int radius;
 
-    constructor Fruit new(int Ax, int Ay, int Asize) {
+    constructor Fruit new(int Ax, int Ay) {
         let x = Ax;
         let y = Ay;
-        let size = Asize;
+        let radius = 5;
         do draw();
         return this;
     }
 
     method void draw() {
       do Screen.setColor(true);
-      do Screen.drawCircle(x, y, 5);
+      do Screen.drawCircle(x, y, radius);
       return;
    }
 
     method void erase() {
         do Screen.setColor(false);
-        do Screen.drawCircle(x, y, 5);
+        do Screen.drawCircle(x, y, radius);
         return;
     }
 
