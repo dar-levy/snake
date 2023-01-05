@@ -7,4 +7,9 @@ class DirectionCondition {
         let y = Ay;
         let direction = Adirection;
     }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
 }
