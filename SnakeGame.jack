@@ -18,10 +18,14 @@ class SnakeGame {
    field Snake snake;
    field Array fruits;
    field int fruitsSize;
+   field int currentFruitIndex;
+   field int moveGap;
 
    constructor SnakeGame new() {
+      let moveGap = 10;
       let fruitsSize = 5;
       let snake = Snake.new();
+      let currentFruitIndex = 0;
       let fruits = Array.new(fruitsSize);
       fruits[0] = Fruit.new(50,50);
       fruits[1] = Fruit.new(30,30);
@@ -43,8 +47,29 @@ class SnakeGame {
       return;
    }
 
-   method boolean isLastMoveValid() {
-      
+   method boolean isMoveValid() {
+      let snakeHead = snake.vertebras[snake.headIndex];
+      let fruit = fruits[currentFruitIndex];
+      if(snakeHead.currentDirection = 1) {
+         if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; }
+      }
+   }
+
+   method void isFruit() {
+      if(snakeHead.currentDirection = 1) {
+         if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; }
+      }
+      if(snakeHead.currentDirection = 2) {
+         if ((snakeHead.x = fruit.x) & (snake.y - moveGap = fruit.y)) { return true; }
+      }
+      if(snakeHead.currentDirection = 3) {
+         if ((snakeHead.x - moveGap = fruit.x) & (snake.y = fruit.y)) { return true; }
+      }
+      if(snakeHead.currentDirection = 4) {
+         if ((snakeHead.x + moveGap = fruit.x) & (snake.y = fruit.y)) { return true; }
+      }
+
+      return false;
    }
 
    /** Runs the game: handles the user's inputs and moves the square accordingly */
