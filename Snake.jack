@@ -1,7 +1,7 @@
 Class Snake {
     field Array Squares;
     field Array Conditions;
-    field int LastSquareIndex;
+    field int HeadIndex;
 
     constructor Snake new(int Ax, int Ay, int Asize) {
         let Squares = function Array new(50);
@@ -12,14 +12,9 @@ Class Snake {
     }
  
     function Eat() {
-        LastSquare = Squares[LastSquareIndex];
-        LastSquareIndex = LastSquareIndex + 1;
-        Move();
-        Squares[LastSquareIndex] = LastSquare; //Square.new(LastSquare.x, LastSquare.y, LastSquare.currentDirection, 10)
-    }
-
-    function Move() {
-        
+        HeadSquare = Squares[HeadIndex];
+        HeadIndex = HeadIndex + 1;
+        Squares[HeadIndex] = HeadSquare; //Square.new(LastSquare.x, LastSquare.y, LastSquare.currentDirection, 10)
     }
 
     function ChangeDirection() {
