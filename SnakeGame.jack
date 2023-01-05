@@ -50,25 +50,20 @@ class SnakeGame {
    method boolean isMoveValid() {
       let snakeHead = snake.vertebras[snake.headIndex];
       let fruit = fruits[currentFruitIndex];
-      if(snakeHead.currentDirection = 1) {
-         if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; }
-      }
+      if(snakeHead.currentDirection = 1) { if ((snake.y + moveGap < 510)) { return true; } }
+      if(snakeHead.currentDirection = 2) { if ((snake.y - moveGap < 510)) { return true; } }
+      if(snakeHead.currentDirection = 3) { if ((snake.x - moveGap < 254)) { return true; } }
+      if(snakeHead.currentDirection = 4) { if ((snake.x + moveGap < 254)) { return true; } }
+      
+      return false;
    }
 
    method void isFruit() {
-      if(snakeHead.currentDirection = 1) {
-         if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; }
-      }
-      if(snakeHead.currentDirection = 2) {
-         if ((snakeHead.x = fruit.x) & (snake.y - moveGap = fruit.y)) { return true; }
-      }
-      if(snakeHead.currentDirection = 3) {
-         if ((snakeHead.x - moveGap = fruit.x) & (snake.y = fruit.y)) { return true; }
-      }
-      if(snakeHead.currentDirection = 4) {
-         if ((snakeHead.x + moveGap = fruit.x) & (snake.y = fruit.y)) { return true; }
-      }
-
+      if(snakeHead.currentDirection = 1) { if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; } }
+      if(snakeHead.currentDirection = 2) { if ((snakeHead.x = fruit.x) & (snake.y - moveGap = fruit.y)) { return true; } }
+      if(snakeHead.currentDirection = 3) { if ((snakeHead.x - moveGap = fruit.x) & (snake.y = fruit.y)) { return true; } }
+      if(snakeHead.currentDirection = 4) { if ((snakeHead.x + moveGap = fruit.x) & (snake.y = fruit.y)) { return true; } }
+      
       return false;
    }
 
