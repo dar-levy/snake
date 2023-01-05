@@ -47,7 +47,7 @@ class SnakeGame {
       return;
    }
 
-   method boolean isMoveValid() {
+   method boolean isNextMoveValid() {
       let snakeHead = snake.vertebras[snake.headIndex];
       let fruit = fruits[currentFruitIndex];
       if(snakeHead.currentDirection = 1) { if ((snake.y + moveGap < 510)) { return true; } }
@@ -58,7 +58,7 @@ class SnakeGame {
       return false;
    }
 
-   method void isFruit() {
+   method void isNextMoveFruit() {
       if(snakeHead.currentDirection = 1) { if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; } }
       if(snakeHead.currentDirection = 2) { if ((snakeHead.x = fruit.x) & (snake.y - moveGap = fruit.y)) { return true; } }
       if(snakeHead.currentDirection = 3) { if ((snakeHead.x - moveGap = fruit.x) & (snake.y = fruit.y)) { return true; } }
