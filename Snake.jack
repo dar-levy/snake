@@ -1,19 +1,23 @@
 class Snake {
-    field Array Squares;
+    field Array Vertebras;
     field int HeadIndex;
 
     constructor Snake new(int Ax, int Ay, int Asize) {
-        let Squares = function Array new(50);
-        Squares[0] = Square.new(0, 0, 10);
-        do Squares[0].draw();
+        let Vertebras = function Array new(50);
+        Vertebras[0] = Vertebra.new(0, 0, 10);
+        do Vertebras[0].draw();
         return this;
     }
     
+    method void move(DirectionCondition condition) {
+        
+    }
+
     // TODO: Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
     method void eat() {
-        let HeadSquare = Squares[HeadIndex];
+        let Head = Vertebras[HeadIndex];
         HeadIndex = HeadIndex + 1;
-        Squares[HeadIndex] = HeadSquare; //Square.new(HeadIndex.x, HeadIndex.y, HeadIndex.currentDirection, 10)
+        Vertebras[HeadIndex] = Head; //Vertebra.new(HeadIndex.x, HeadIndex.y, HeadIndex.currentDirection, 10)
         // TODO: Don't forget to dispose fruit
 
         return;
@@ -22,7 +26,7 @@ class Snake {
     method void changeDirection(Condition DirectionCondition) {
         let currentIndex = 0;
         while(~(currentIndex = HeadIndex + 1)) {
-            do Squares[currentIndex].AddDirectionCondition(DirectionCondition);
+            do Vertebras[currentIndex].AddDirectionCondition(DirectionCondition);
             currentIndex = currentIndex + 1;
         }
 
@@ -32,11 +36,11 @@ class Snake {
     method void dispose() {
         let currentIndex = HeadIndex;
         while(~(currentIndex = -1)) {
-            Squares[currentIndex].dispose();
+            Vertebras[currentIndex].dispose();
             currentIndex = currentIndex - 1;
         }
 
-        do Squares.dispose();
+        do Vertebras.dispose();
         do Memory.deAlloc(this);
         
         return;
