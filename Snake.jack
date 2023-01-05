@@ -10,7 +10,11 @@ class Snake {
     }
     
     method void move(DirectionCondition condition) {
-        
+        currentIndex = HeadIndex;
+        while(~(currentIndex < 0)) {
+            Vertebras[currentIndex].move(condition);
+            currentIndex = currentIndex - 1;
+        }
     }
 
     // TODO: Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
