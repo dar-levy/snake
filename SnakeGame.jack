@@ -16,10 +16,6 @@ class SnakeGame {
       return this;
    }
 
-   method int getCurrentFruitIndex() {
-      return currentFruitIndex;
-   }
-
    method void constructFruits() {
       var Fruit firstFruit;
       let fruits = Array.new(fruitsSize);
@@ -86,8 +82,6 @@ class SnakeGame {
 
    method void eatFruit() {
       var Fruit currentFruit;
-      var int currentFruitIndex;
-      let currentFruitIndex = getCurrentFruitIndex();
       let currentFruit = fruits[currentFruitIndex];
       do snake.eat(currentFruit);
       do currentFruit.erase();
