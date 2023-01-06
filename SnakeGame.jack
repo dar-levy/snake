@@ -85,7 +85,7 @@ class SnakeGame {
       let currentFruit = fruits[currentFruitIndex];
       do snake.eat(currentFruit);
       do currentFruit.erase();
-      if (currentFruitIndex < fruitsSize) { let currentFruitIndex = currentFruitIndex + 1; } // TODO: Change currentFruitIndex field!!!!  (maybe return)
+      if (currentFruitIndex < fruitsSize) { let currentFruitIndex = currentFruitIndex + 1; }
       if (~(currentFruitIndex < fruitsSize)) { let currentFruitIndex = 0; }
       let currentFruit = fruits[currentFruitIndex];
       do currentFruit.draw();
