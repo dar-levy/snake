@@ -73,7 +73,7 @@ class SnakeGame {
    }
 
    method void eatFruit() {
-      do snake.eat();
+      do snake.eat(fruits[currentFruitIndex]);
       if (currentFruitIndex < fruitSize) {
          do fruits[currentFruitIndex].erase();
          let currentFruitIndex = currentFruitIndex + 1;
@@ -92,7 +92,7 @@ class SnakeGame {
       let isFruit = isNextMoveFruit();
       let condition = DirectionCondition.new(-1, -1, -1);
       if ((~(isFruit)) & (~(exit))) { do snake.move(condition);}
-      if (isFruit) { do eatFruit(isFruit); }
+      if (isFruit) { do eatFruit(); }
       if (AisLoose) { do Output.printString("GameOver"); }
       if (Aexit) { do Output.printString("See you next time"); }
       
