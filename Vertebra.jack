@@ -52,7 +52,9 @@ class Vertebra {
          }
       }
 
-      do moveByDirection(currentDirection);   
+      do moveByDirection(currentDirection);
+      do Sys.wait(5);
+      
       return;
    }
 
