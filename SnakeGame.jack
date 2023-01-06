@@ -17,11 +17,12 @@ class SnakeGame {
       let snake = Snake.new();
       let currentFruitIndex = 0;
       let fruits = Array.new(fruitsSize);
-      fruits[0] = Fruit.new(50,50);
-      fruits[1] = Fruit.new(30,30);
-      fruits[2] = Fruit.new(70,70);
-      fruits[3] = Fruit.new(100,100);
-      fruits[4] = Fruit.new(170,170);
+      let fruits[0] = Fruit.new(50,50);
+      let fruits[1] = Fruit.new(30,30);
+      let fruits[2] = Fruit.new(70,70);
+      let fruits[3] = Fruit.new(100,100);
+      let fruits[4] = Fruit.new(170,170);
+
       return this;
    }
 
