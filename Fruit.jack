@@ -19,7 +19,7 @@ class Fruit {
 
     method void erase() {
         do Screen.setColor(false);
-        do Screen.drawCircle(x, y, radius);
+        do Screen.drawRectangle(x, y, x+size, y+size);
         return;
     }
 
