@@ -10,7 +10,7 @@ class Snake {
     }
 
     method Vertebra getHead() {
-        return vertebras[headIndex]
+        return vertebras[headIndex];
     }
     
     method void move(DirectionCondition condition) {
