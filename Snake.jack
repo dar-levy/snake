@@ -36,6 +36,7 @@ class Snake {
     }
 
     method void dispose() {
+        var int currentIndex;
         let currentIndex = headIndex;
         while(~(currentIndex < 0)) {
             do vertebras[currentIndex].dispose();

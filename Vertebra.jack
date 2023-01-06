@@ -34,9 +34,8 @@ class Vertebra {
       return size;
    }
 
-   method void setCurrentDirection(int direction) {
-      let currentDirection = direction;
-      return;
+   method int getCurrentDirection() {
+      return currentDirection;
    }
 
    method DirectionCondition getCurrentConditionIndex() {
