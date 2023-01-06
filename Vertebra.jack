@@ -27,20 +27,19 @@ class Vertebra {
       if((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
          do moveByDirection(conditions[currentConditionIndex].direction);
          let currentDirection = conditions[currentConditionIndex].direction;
+         let currentConditionIndex = currentConditionIndex + 1;
       }
 
       if(~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))){
          do moveByDirection(currentDirection);
       }
       
-      let currentConditionIndex = currentConditionIndex + 1;
-      
       return;
    }
 
    method void addCondition(DirectionCondition condition) {
-      let conditions[lastConditionIndex + 1] = condition;
       let lastConditionIndex = lastConditionIndex + 1;
+      let conditions[lastConditionIndex] = condition;
    }
 
    method void moveByDirection(int direction) {
