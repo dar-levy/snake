@@ -29,6 +29,7 @@ class SnakeGame {
       let fruits[2] = Fruit.new(70,70);
       let fruits[3] = Fruit.new(100,100);
       let fruits[4] = Fruit.new(170,170);
+      do fruits[4].draw();
 
       return;
    }
