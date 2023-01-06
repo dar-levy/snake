@@ -28,16 +28,6 @@ class Snake {
         return;
     }
 
-    method void changeDirection(Condition DirectionCondition) {
-        let currentIndex = 0;
-        while(~(currentIndex = headIndex + 1)) {
-            do vertebras[currentIndex].AddDirectionCondition(DirectionCondition);
-            let currentIndex = currentIndex + 1;
-        }
-
-        return;
-    }
-
     method void dispose() {
         let currentIndex = headIndex;
         while(~(currentIndex = -1)) {
