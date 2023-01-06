@@ -4,6 +4,7 @@ class Snake {
     field int headIndex;
 
     constructor Snake new() {
+        let headIndex = 0;
         let vertebras = Array.new(50);
         let vertebras[0] = Vertebra.new(0, 0, 10, 4);
         return this;
