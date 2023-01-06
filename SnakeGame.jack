@@ -75,7 +75,6 @@ class SnakeGame {
       let snakeHead = snake.getHead();
       let conditionMoveTo = DirectionCondition.new(snakeHead.getX(), snakeHead.getY(), Adirection);
       do snake.move(conditionMoveTo);
-      do Sys.wait(5);
       
       return;
    }
@@ -98,16 +97,10 @@ class SnakeGame {
       var DirectionCondition condition;
       let isFruit = isNextMoveFruit();
       let condition = DirectionCondition.new(-1, -1, -1);
-      if ((~isFruit) & (~Aexit) & (~AisLoose)) { do snake.move(condition);}
-      if (isFruit) { do eatFruit(); }
-      if (AisLoose) { 
-         //do Output.moveCursor(127,225);
-         do Output.printString("GameOver");
-      }
-      if (Aexit) {
-         //do Output.moveCursor(127,225);
-         do Output.printString("See you next time");
-      }
+      if (isFruit) { do eatFruit(); return; }
+      if (AisLoose) { do Output.printString("GameOver"); return; }
+      if (Aexit) { do Output.printString("See you next time"); return; }
+      do snake.move(condition);
 
       return;
    }
@@ -128,7 +121,7 @@ class SnakeGame {
 
          if (key = 81)  { let exit = true; }     // q key
          if (key = 131) { do moveToDirection(1); } // up arrow
-         if (key = 133) { do moveToDirection(2); } // down arrow
+         if (key = 133) {do moveToDirection(2); } // down arrow
          if (key = 130) { do moveToDirection(3); } // left arrow
          if (key = 132) { do moveToDirection(4); } // right arrow
 
