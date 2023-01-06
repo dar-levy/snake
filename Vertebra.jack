@@ -22,6 +22,18 @@ class Vertebra {
       return this;
    }
 
+   method int getX() {
+      return x;
+   }
+
+   method int getY() {
+      return y;
+   }
+
+   method int getCurrentDirection() {
+      return currentDirection;
+   }
+
    method void move(DirectionCondition condition) {
       do addCondition(condition);
       if ((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)) {
