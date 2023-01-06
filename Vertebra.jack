@@ -8,12 +8,12 @@ class Vertebra {
    field int currentConditionIndex;
    field int moveGap;
 
-   constructor Vertebra new(int Ax, int Ay, int Asize) {
+   constructor Vertebra new(int Ax, int Ay, int Asize, int Adirection) {
       let x = Ax;
       let y = Ay;
       let size = Asize;
       let moveGap = 10;
-      let currentDirection = 4;
+      let currentDirection = Adirection;
       let lastConditionIndex = 0;
       let conditions = Array.new(50);
       let currentConditionIndex = 0;
@@ -32,10 +32,6 @@ class Vertebra {
 
    method int getSize() {
       return size;
-   }
-
-   method int getCurrentDirection() {
-      return currentDirection;
    }
 
    method void setCurrentDirection(int direction) {

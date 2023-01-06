@@ -5,7 +5,7 @@ class Snake {
 
     constructor Snake new() {
         let vertebras = Array.new(50);
-        let vertebras[0] = Vertebra.new(0, 0, 10);
+        let vertebras[0] = Vertebra.new(0, 0, 10, 4);
         return this;
     }
 
@@ -30,8 +30,7 @@ class Snake {
         var Vertebra head;
         let head = vertebras[headIndex];
         let headIndex = headIndex + 1;
-        let vertebras[headIndex] = Vertebra.new(fruit.getX(), fruit.getY(), head.getSize());
-        let vertebras[headIndex].setCurrentDirection() = head.getCurrentDirection();
+        let vertebras[headIndex] = Vertebra.new(fruit.getX(), fruit.getY(), head.getSize(), head.getCurrentDirection());
 
         return;
     }
