@@ -71,6 +71,7 @@ class Vertebra {
       if (direction = 2) { do moveDown(); }
       if (direction = 3) { do moveLeft(); }
       if (direction = 4) { do moveRight(); }
+      return;
    }
 
    method void dispose() {
