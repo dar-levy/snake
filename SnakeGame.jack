@@ -50,7 +50,6 @@ class SnakeGame {
 
    method boolean isNextMoveNotValid() {
       let snakeHead = snake.vertebras[snake.headIndex];
-      let fruit = fruits[currentFruitIndex];
       if(snakeHead.currentDirection = 1) { if ((snake.y + moveGap < 510)) { return false; } }
       if(snakeHead.currentDirection = 2) { if ((snake.y - moveGap < 510)) { return false; } }
       if(snakeHead.currentDirection = 3) { if ((snake.x - moveGap < 254)) { return false; } }
@@ -60,6 +59,8 @@ class SnakeGame {
    }
 
    method void isNextMoveFruit() {
+      let snakeHead = snake.vertebras[snake.headIndex];
+      let fruit = fruits[currentFruitIndex];
       if(snakeHead.currentDirection = 1) { if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; } }
       if(snakeHead.currentDirection = 2) { if ((snakeHead.x = fruit.x) & (snake.y - moveGap = fruit.y)) { return true; } }
       if(snakeHead.currentDirection = 3) { if ((snakeHead.x - moveGap = fruit.x) & (snake.y = fruit.y)) { return true; } }
@@ -85,7 +86,19 @@ class SnakeGame {
             let isLoose = isNextMoveNotValid();
             let snakeHead = snake.vertebras[snake.headIndex];
             let condition = DirectionCondition.new(-1, -1, -1);
-            if (isFruit) { snake.eat(); }
+            if (isFruit) { 
+               snake.eat();
+               if (currentFruitIndex < fruitSize) {
+                  do fruits[currentFruitIndex].erase();
+                  let currentFruitIndex = currentFruitIndex + 1;
+                  do fruits[currentFruitIndex].draw();
+               }
+               if (~(currentFruitIndex < fruitSize)) {
+                  do fruits[currentFruitIndex].erase();
+                  let currentFruitIndex = 0;
+                  do fruits[currentFruitIndex].draw();
+               }
+            }
             if ((~(isFruit)) & (~(exit))){ do snake.move(condition);}
             if (isLoose) { Output.printString("GameOver")}
             if (exit) { Output.printString("See you next time")}
@@ -119,7 +132,19 @@ class SnakeGame {
             let isLoose = isNextMoveNotValid();
             let snakeHead = snake.vertebras[snake.headIndex];
             let condition = DirectionCondition.new(-1, -1, -1);
-            if (isFruit) { snake.eat(); }
+            if (isFruit) { 
+               snake.eat();
+               if (currentFruitIndex < fruitSize) {
+                  do fruits[currentFruitIndex].erase();
+                  let currentFruitIndex = currentFruitIndex + 1;
+                  do fruits[currentFruitIndex].draw();
+               }
+               if (~(currentFruitIndex < fruitSize)) {
+                  do fruits[currentFruitIndex].erase();
+                  let currentFruitIndex = 0;
+                  do fruits[currentFruitIndex].draw();
+               }
+            }
             if ((~(isFruit)) & (~(exit))){ do snake.move(condition);}
             if (isLoose) { Output.printString("GameOver")}
             if (exit) { Output.printString("See you next time")}
