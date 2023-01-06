@@ -80,6 +80,7 @@ class SnakeGame {
       let currentDirection = Adirection; // TODO: Check how to effect the field currentDirection
       let conditionMoveTo = DirectionCondition.new(snakeHead.getX(), snakeHead.getY(), currentDirection);
       do snake.move(conditionMoveTo);
+      do Sys.wait(5);
       
       return;
    }
