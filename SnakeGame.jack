@@ -44,11 +44,12 @@ class SnakeGame {
    }
 
    method boolean isNextMoveNotValid() {
+      var Vertebra snakeHead;
       let snakeHead = snake.vertebras[snake.headIndex];
-      if(snakeHead.currentDirection = 1) { if ((snake.y + moveGap < 510)) { return false; } }
-      if(snakeHead.currentDirection = 2) { if ((snake.y - moveGap < 510)) { return false; } }
-      if(snakeHead.currentDirection = 3) { if ((snake.x - moveGap < 254)) { return false; } }
-      if(snakeHead.currentDirection = 4) { if ((snake.x + moveGap < 254)) { return false; } }
+      if(snakeHead.currentDirection = 1) { if (snake.y + moveGap < 510) { return false; } }
+      if(snakeHead.currentDirection = 2) { if (snake.y - moveGap < 510) { return false; } }
+      if(snakeHead.currentDirection = 3) { if (snake.x - moveGap < 254) { return false; } }
+      if(snakeHead.currentDirection = 4) { if (snake.x + moveGap < 254) { return false; } }
       
       return true;
    }
