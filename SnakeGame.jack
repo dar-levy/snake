@@ -107,7 +107,6 @@ class SnakeGame {
       let isLoose = false;
       
       while ((~exit) & (~isLoose)) {
-         let snakeHead = snake.vertebras[snake.headIndex];
          while (key = 0) {
             let key = Keyboard.keyPressed();
             let isLoose = isNextMoveNotValid();
