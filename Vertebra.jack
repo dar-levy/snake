@@ -15,7 +15,7 @@ class Vertebra {
       let moveGap = 10;
       let currentDirection = 4;
       let lastConditionIndex = 0;
-      let conditions = Array.new(50)
+      let conditions = Array.new(50);
       let currentConditionIndex = 0;
       do draw();
 
@@ -24,13 +24,13 @@ class Vertebra {
 
    method void move(DirectionCondition condition) {
       do addCondition(condition);
-      if((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
+      if ((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)) {
          do moveByDirection(conditions[currentConditionIndex].direction);
          let currentDirection = conditions[currentConditionIndex].direction;
          let currentConditionIndex = currentConditionIndex + 1;
       }
 
-      if(~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))){
+      if (~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))) {
          do moveByDirection(currentDirection);
       }
       
