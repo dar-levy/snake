@@ -1,10 +1,5 @@
-// This file is part of www.nand2tetris.org
-// and the book "The Elements of Computing Systems"
-// by Nisan and Schocken, MIT Press.
-// File name: projects/09/Snake/Snake.jack
 
 class Vertebra {
-
    field int x, y;
    field int size;
    field Array conditions;
@@ -13,37 +8,62 @@ class Vertebra {
    field int currentConditionIndex;
    field int moveGap;
 
-   constructor Vertebra new(int Ax, int Ay, int Asize) {
+   constructor Vertebra new(int Ax, int Ay, int Asize, int Adirection) {
       let x = Ax;
       let y = Ay;
       let size = Asize;
-      let moveGap = 10;
-      let currentDirection = 4;
+      let moveGap = 2;
+      let currentDirection = Adirection;
       let lastConditionIndex = 0;
-      let conditions = function Array new(50)
+      let conditions = Array.new(50);
       let currentConditionIndex = 0;
       do draw();
+
       return this;
    }
 
-   method void move(DirectionCondition condition) {
-      addCondition(condition);
-      if((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
-         do moveByDirection(conditions[currentConditionIndex].direction);
-         currentDirection = conditions[currentConditionIndex].direction;
-      }
+   method int getX() {
+      return x;
+   }
 
-      if(~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))){
-         do moveByDirection(currentDirection);
+   method int getY() {
+      return y;
+   }
+
+   method int getSize() {
+      return size;
+   }
+
+   method int getCurrentDirection() {
+      return currentDirection;
+   }
+
+   method void move() {
+      var DirectionCondition currentCondition;
+      if (~(lastConditionIndex = 0)) {
+         if ((lastConditionIndex > currentConditionIndex)) {
+            let currentCondition = conditions[currentConditionIndex];
+            if ((x=currentCondition.getX()) & (y=currentCondition.getY())) {
+               let currentDirection = currentCondition.getDirection();
+               do moveByDirection(currentDirection);
+               let currentConditionIndex = currentConditionIndex + 1;
+               return;
+            }
+         }
       }
-      
-      currentConditionIndex = currentConditionIndex + 1;
+      do moveByDirection(currentDirection);
+      do Sys.wait(5);
+
       return;
    }
 
    method void addCondition(DirectionCondition condition) {
-      conditions[lastConditionIndex + 1] = condition;
-      lastConditionIndex = lastConditionIndex + 1;
+      if (~(condition.getX() = -1)) {
+         let conditions[lastConditionIndex] = condition;
+         let lastConditionIndex = lastConditionIndex + 1;
+      }
+
+      return;
    }
 
    method void moveByDirection(int direction) {
@@ -51,10 +71,22 @@ class Vertebra {
       if (direction = 2) { do moveDown(); }
       if (direction = 3) { do moveLeft(); }
       if (direction = 4) { do moveRight(); }
+      return;
    }
 
    method void dispose() {
+      var int currentIndex;
+      var DirectionCondition currentCondition;
+      let currentIndex = lastConditionIndex;
+      while(~(currentIndex < 0)) {
+         let currentCondition = conditions[currentIndex];
+         do currentCondition.dispose();
+         let currentIndex = currentIndex - 1;
+      }
+
+      do conditions.dispose();
       do Memory.deAlloc(this);
+      
       return;
    }
 
