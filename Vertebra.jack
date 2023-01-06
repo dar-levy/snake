@@ -12,7 +12,7 @@ class Vertebra {
       let x = Ax;
       let y = Ay;
       let size = Asize;
-      let moveGap = 10;
+      let moveGap = 2;
       let currentDirection = Adirection;
       let lastConditionIndex = 0;
       let conditions = Array.new(50);

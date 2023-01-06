@@ -7,7 +7,7 @@ class SnakeGame {
    field int moveGap;
 
    constructor SnakeGame new() {
-      let moveGap = 10;
+      let moveGap = 2;
       let fruitsSize = 5;
       let snake = Snake.new();
       let currentFruitIndex = 0;
