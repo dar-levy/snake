@@ -85,10 +85,16 @@ class SnakeGame {
    method void determineGameStatus(boolean AisLoose, boolean Aexit) {
       let isFruit = isNextMoveFruit();
       let condition = DirectionCondition.new(-1, -1, -1);
-      if ((~(isFruit)) & (~(exit))) { do snake.move(condition);}
+      if ((~isFruit) & (~exit) & (~isLoose)) { do snake.move(condition);}
       if (isFruit) { do eatFruit(); }
-      if (AisLoose) { do Output.printString("GameOver"); }
-      if (Aexit) { do Output.printString("See you next time"); }
+      if (AisLoose) { 
+         do Output.moveCursor(127,225);
+         do Output.printString("GameOver");
+      }
+      if (Aexit) {
+         do Output.moveCursor(127,225);
+         do Output.printString("See you next time");
+      }
       
       return;
    }
