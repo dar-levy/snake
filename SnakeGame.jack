@@ -29,13 +29,14 @@ class SnakeGame {
       return;
    }
 
-   /** Disposes this game. */
    method void dispose() {
-      do snake.dispose();
       var int currentFrIndex;
+      var Vertebra currentFr;
+      do snake.dispose();
       let currentFrIndex = 0;
       while(currentFrIndex < fruitsSize) {
-         do fruits[currentFrIndex].dispose();
+         let currentFr = fruits[currentFrIndex];
+         do currentFr.dispose();
          let currentFrIndex = currentFrIndex + 1;
       }
 
@@ -56,8 +57,8 @@ class SnakeGame {
 
    method boolean isNextMoveFruit() {
       var Vertebra snakeHead;
-      let snakeHead = snake.getHead();
       var Fruit fruit;
+      let snakeHead = snake.getHead();
       let fruit = fruits[currentFruitIndex];
       if(snakeHead.getCurrentDirection() = 1) { if ((snakeHead.getX() = fruit.getX()) & (snake.getY() + moveGap = fruit.getY())) { return true; } }
       if(snakeHead.getCurrentDirection() = 2) { if ((snakeHead.getX() = fruit.getX()) & (snake.getY() - moveGap = fruit.getY())) { return true; } }
@@ -68,7 +69,8 @@ class SnakeGame {
    }
 
    method void moveToDirection(int Adirection) {
-      let snakeHead = snake.vertebras[snake.headIndex];
+      var Vertebra snakeHead;
+      let snakeHead = snake.getHead();
       let currentDirection = Adirection;
       let conditionMoveTo = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
       do snake.move(conditionMoveTo);
