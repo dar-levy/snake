@@ -3,17 +3,6 @@
 // by Nisan and Schocken, MIT Press.
 // File name: projects/09/Square/SquareGame.jack
 
-/**
- * Implements the Square Dance game.
- * This simple game allows the user to move a black square around
- * the screen, and change the square's size during the movement.
- * When the game starts, a square of 30 by 30 pixels is shown at the
- * top-left corner of the screen. The user controls the square as follows.
- * The 4 arrow keys are used to move the square up, down, left, and right.
- * The 'z' and 'x' keys are used, respectively, to decrement and increment
- * the square's size. The 'q' key is used to quit the game.
- */
-
 class SnakeGame {
    field Snake snake;
    field Array fruits;
@@ -74,6 +63,7 @@ class SnakeGame {
       let currentDirection = Adirection;
       let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
       do snake.move(condition);
+      
       return;
    }
 
@@ -100,19 +90,18 @@ class SnakeGame {
       if (isFruit) { do eatFruit(isFruit); }
       if (AisLoose) { Output.printString("GameOver"); }
       if (Aexit) { Output.printString("See you next time"); }
+      
       return;
    }
 
-   /** Runs the game: handles the user's inputs and moves the square accordingly */
    method void run() {
-      var char key;  // the key currently pressed by the user
+      var char key;
       var boolean exit;
       var boolean isLoose;
       let exit = false;
       let isLoose = false;
       
       while ((~exit) & (~isLoose)) {
-         // waits for a key to be pressed
          let snakeHead = snake.vertebras[snake.headIndex];
          while (key = 0) {
             let key = Keyboard.keyPressed();
@@ -126,13 +115,13 @@ class SnakeGame {
          if (key = 130) { do moveToDirection(3); } // left arrow
          if (key = 132) { do moveToDirection(4); } // right arrow
 
-         // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
             let isLoose = isNextMoveNotValid();
             do determineGameStatus(isLoose, exit);
          }
-     } // while
+     }
+
      return;
    }
 }
