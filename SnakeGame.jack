@@ -45,7 +45,7 @@ class SnakeGame {
 
    method boolean isNextMoveNotValid() {
       var Vertebra snakeHead;
-      let snakeHead = snake.vertebras[snake.headIndex];
+      let snakeHead = snake.getHead();
       if (snakeHead.getCurrentDirection() = 1) { if (snakeHead.getY() + moveGap < 510) { return false; } }
       if (snakeHead.getCurrentDirection() = 2) { if (snakeHead.getY() - moveGap < 510) { return false; } }
       if (snakeHead.getCurrentDirection() = 3) { if (snakeHead.getX() - moveGap < 254) { return false; } }

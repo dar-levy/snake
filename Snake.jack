@@ -8,6 +8,10 @@ class Snake {
         let vertebras[0] = Vertebra.new(0, 0, 10);
         return this;
     }
+
+    method Vertebra getHead() {
+        return vertebras[headIndex]
+    }
     
     method void move(DirectionCondition condition) {
         let currentIndex = headIndex;
