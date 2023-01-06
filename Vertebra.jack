@@ -41,7 +41,7 @@ class Vertebra {
    method void move() {
       var DirectionCondition currentCondition;
       if (~(lastConditionIndex = 0)) {
-         if ((~(lastConditionIndex < currentConditionIndex))) {
+         if ((lastConditionIndex > currentConditionIndex)) {
             let currentCondition = conditions[currentConditionIndex];
             if ((x=currentCondition.getX()) & (y=currentCondition.getY())) {
                let currentDirection = currentCondition.getDirection();
@@ -51,10 +51,9 @@ class Vertebra {
             }
          }
       }
-
       do moveByDirection(currentDirection);
       do Sys.wait(5);
-      
+
       return;
    }
 
