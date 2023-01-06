@@ -3,7 +3,7 @@ class Snake {
     field Array vertebras;
     field int headIndex;
 
-    constructor Snake new(int Ax, int Ay, int Asize) {
+    constructor Snake new() {
         let vertebras = function Array new(50);
         let vertebras[0] = Vertebra.new(0, 0, 10);
         do vertebras[0].draw();
