@@ -69,6 +69,12 @@ class SnakeGame {
       return false;
    }
 
+   method void generateDirectionCondition(int Adirection) {
+      let currentDirection = Adirection;
+      let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
+      snake.move(condition);
+   }
+
    /** Runs the game: handles the user's inputs and moves the square accordingly */
    method void run() {
       var char key;  // the key currently pressed by the user
@@ -104,26 +110,10 @@ class SnakeGame {
             if (exit) { Output.printString("See you next time")}
          }
          if (key = 81)  { let exit = true; }     // q key
-         if (key = 131) { 
-            let currentDirection = 1;
-            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
-            snake.move(condition);
-         }   // up arrow
-         if (key = 133) { 
-            let currentDirection = 2;
-            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
-            snake.move(condition);
-         }   // down arrow
-         if (key = 130) { 
-            let currentDirection = 3;
-            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
-            snake.move(condition);
-         }   // left arrow
-         if (key = 132) {
-            let currentDirection = 4;
-            let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
-            snake.move(condition);
-         }   // right arrow
+         if (key = 131) { do generateDirectionCondition(1); } // up arrow
+         if (key = 133) { do generateDirectionCondition(2); } // down arrow
+         if (key = 130) { do generateDirectionCondition(3); } // left arrow
+         if (key = 132) { do generateDirectionCondition(4); } // right arrow
 
          // waits for the key to be released
          while (~(key = 0)) {
