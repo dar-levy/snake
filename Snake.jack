@@ -6,7 +6,6 @@ class Snake {
     constructor Snake new() {
         let vertebras = function Array new(50);
         let vertebras[0] = Vertebra.new(0, 0, 10);
-        do vertebras[0].draw();
         return this;
     }
     
