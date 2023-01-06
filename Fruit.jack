@@ -12,9 +12,9 @@ class Fruit {
     }
 
     method void draw() {
-      do Screen.setColor(true);
-      do Screen.drawRectangle(x, y, x+size, y+size);
-      return;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x+size, y+size);
+        return;
    }
 
     method void erase() {
@@ -24,7 +24,7 @@ class Fruit {
     }
 
    method void dispose() {
-      do Memory.deAlloc(this);
-      return;
+        do Memory.deAlloc(this);
+        return;
    }
 }
