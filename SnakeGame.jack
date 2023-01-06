@@ -99,8 +99,18 @@ class SnakeGame {
       let isFruit = isNextMoveFruit();
       let condition = DirectionCondition.new(-1, -1, -1);
       if (isFruit) { do eatFruit(); return; }
-      if (AisLoose) { do Output.printString("GameOver"); return; }
-      if (Aexit) { do Output.printString("See you next time"); return; }
+      if (AisLoose) { 
+         do Screen.clearScreen();
+         do Output.moveCursor(11, 25);
+         do Output.printString("GameOver");
+         return;
+      }
+      if (Aexit) { 
+         do Screen.clearScreen();
+         do Output.moveCursor(11, 25);
+         do Output.printString("See you next time");
+         return;
+      }
       do snake.move(condition);
       return;
    }
