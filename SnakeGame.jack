@@ -48,12 +48,12 @@ class SnakeGame {
    method boolean isNextMoveNotValid() {
       var Vertebra snakeHead;
       let snakeHead = snake.getHead();
-      if (snakeHead.getCurrentDirection() = 1) { if (snakeHead.getY() + moveGap < 244) { return false; } }
-      if (snakeHead.getCurrentDirection() = 2) { if (snakeHead.getY() - moveGap < 244) { return false; } }
-      if (snakeHead.getCurrentDirection() = 3) { if (snakeHead.getX() - moveGap < 500) { return false; } }
-      if (snakeHead.getCurrentDirection() = 4) { if (snakeHead.getX() + moveGap < 500) { return false; } }
+      if (snakeHead.getCurrentDirection() = 1) { if (snakeHead.getY() + moveGap > 244) { return true; } }
+      if (snakeHead.getCurrentDirection() = 2) { if (snakeHead.getY() - moveGap < 0) { return true; } }
+      if (snakeHead.getCurrentDirection() = 3) { if (snakeHead.getX() - moveGap < 0) { return true; } }
+      if (snakeHead.getCurrentDirection() = 4) { if (snakeHead.getX() + moveGap > 500) { return true; } }
       
-      return true;
+      return false;
    }
 
    method boolean isNextMoveFruit() {
@@ -101,11 +101,11 @@ class SnakeGame {
       if ((~isFruit) & (~Aexit) & (~AisLoose)) { do snake.move(condition);}
       if (isFruit) { do eatFruit(); }
       if (AisLoose) { 
-         do Output.moveCursor(127,225);
+         //do Output.moveCursor(127,225);
          do Output.printString("GameOver");
       }
       if (Aexit) {
-         do Output.moveCursor(127,225);
+         //do Output.moveCursor(127,225);
          do Output.printString("See you next time");
       }
 
@@ -120,7 +120,7 @@ class SnakeGame {
       let isLoose = false;
       
       while ((~exit) & (~isLoose)) {
-         while (key = 0) {
+         while ((key = 0) & (~isLoose)) {
             let key = Keyboard.keyPressed();
             let isLoose = isNextMoveNotValid();
             do determineGameStatus(isLoose, exit);
@@ -132,7 +132,7 @@ class SnakeGame {
          if (key = 130) { do moveToDirection(3); } // left arrow
          if (key = 132) { do moveToDirection(4); } // right arrow
 
-         while (~(key = 0)) {
+         while (~(key = 0) & (~isLoose)) {
             let key = Keyboard.keyPressed();
             let isLoose = isNextMoveNotValid();
             do determineGameStatus(isLoose, exit);
