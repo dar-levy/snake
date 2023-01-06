@@ -1,0 +1,63 @@
+
+class Snake {
+    field Array vertebras;
+    field int headIndex;
+
+    constructor Snake new() {
+        let headIndex = 0;
+        let vertebras = Array.new(50);
+        let vertebras[0] = Vertebra.new(4, 4, 10, 4);
+        return this;
+    }
+
+    method Vertebra getHead() {
+        return vertebras[headIndex];
+    }
+    
+    method void move(DirectionCondition condition) {
+        var int currentIndex;
+        var Vertebra currentVertebra;
+        let currentIndex = headIndex;
+        while(~(currentIndex < 0)) {
+            let currentVertebra = vertebras[currentIndex];
+            do currentVertebra.addCondition(condition);
+            do currentVertebra.move();
+            let currentIndex = currentIndex - 1;
+        }
+
+        return;
+    }
+
+    method void eat(Fruit fruit) {
+        var Vertebra head;
+        var int x;
+        var int y;
+        let x = fruit.getX();
+        let y = fruit.getY();
+        let head = vertebras[headIndex];
+        let headIndex = headIndex + 1;
+        if(head.getCurrentDirection() = 1) { let y = y + 8; }
+        if(head.getCurrentDirection() = 2) { let y = y - 8; }
+        if(head.getCurrentDirection() = 3) { let x = x - 8; }
+        if(head.getCurrentDirection() = 4) { let x = x + 8; }
+        let vertebras[headIndex] = Vertebra.new(x, y, head.getSize(), head.getCurrentDirection());
+
+        return;
+    }
+
+    method void dispose() {
+        var int currentIndex;
+        var Vertebra currentVertebra;
+        let currentIndex = headIndex;
+        while(~(currentIndex < 0)) {
+            let currentVertebra = vertebras[currentIndex];
+            do currentVertebra.dispose();
+            let currentIndex = currentIndex - 1;
+        }
+
+        do vertebras.dispose();
+        do Memory.deAlloc(this);
+        
+        return;
+    }
+}

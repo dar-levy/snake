@@ -1,0 +1,29 @@
+
+class DirectionCondition {
+    field int x, y;
+    field String direction;
+
+    constructor DirectionCondition new(int Ax, int Ay, String Adirection) {
+        let x = Ax;
+        let y = Ay;
+        let direction = Adirection;
+        return this;
+    }
+
+    method int getX() {
+        return x;
+    }
+
+    method int getY() {
+        return y;
+    }
+
+    method DirectionCondition getDirection() {
+        return direction;
+    }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+}

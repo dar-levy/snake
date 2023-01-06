@@ -1,0 +1,142 @@
+
+class Vertebra {
+   field int x, y;
+   field int size;
+   field Array conditions;
+   field int currentDirection;
+   field int lastConditionIndex;
+   field int currentConditionIndex;
+   field int moveGap;
+
+   constructor Vertebra new(int Ax, int Ay, int Asize, int Adirection) {
+      let x = Ax;
+      let y = Ay;
+      let size = Asize;
+      let moveGap = 2;
+      let currentDirection = Adirection;
+      let lastConditionIndex = 0;
+      let conditions = Array.new(50);
+      let currentConditionIndex = 0;
+      do draw();
+
+      return this;
+   }
+
+   method int getX() {
+      return x;
+   }
+
+   method int getY() {
+      return y;
+   }
+
+   method int getSize() {
+      return size;
+   }
+
+   method int getCurrentDirection() {
+      return currentDirection;
+   }
+
+   method void move() {
+      var DirectionCondition currentCondition;
+      if (~(lastConditionIndex = 0)) {
+         if ((lastConditionIndex > currentConditionIndex)) {
+            let currentCondition = conditions[currentConditionIndex];
+            if ((x=currentCondition.getX()) & (y=currentCondition.getY())) {
+               let currentDirection = currentCondition.getDirection();
+               do moveByDirection(currentDirection);
+               let currentConditionIndex = currentConditionIndex + 1;
+               return;
+            }
+         }
+      }
+      do moveByDirection(currentDirection);
+      do Sys.wait(5);
+
+      return;
+   }
+
+   method void addCondition(DirectionCondition condition) {
+      if (~(condition.getX() = -1)) {
+         let conditions[lastConditionIndex] = condition;
+         let lastConditionIndex = lastConditionIndex + 1;
+      }
+
+      return;
+   }
+
+   method void moveByDirection(int direction) {
+      if (direction = 1) { do moveUp(); }
+      if (direction = 2) { do moveDown(); }
+      if (direction = 3) { do moveLeft(); }
+      if (direction = 4) { do moveRight(); }
+      return;
+   }
+
+   method void dispose() {
+      var int currentIndex;
+      var DirectionCondition currentCondition;
+      let currentIndex = lastConditionIndex;
+      while(~(currentIndex < 0)) {
+         let currentCondition = conditions[currentIndex];
+         do currentCondition.dispose();
+         let currentIndex = currentIndex - 1;
+      }
+
+      do conditions.dispose();
+      do Memory.deAlloc(this);
+      
+      return;
+   }
+
+   method void draw() {
+      do Screen.setColor(true);
+      do Screen.drawRectangle(x, y, x + size, y + size);
+      return;
+   }
+
+   method void moveUp() {
+      if (y > 1) {
+         do Screen.setColor(false);
+         do Screen.drawRectangle(x, (y + size) - 1, x + size, y + size);
+         let y = y - moveGap;
+         do Screen.setColor(true);
+         do Screen.drawRectangle(x, y, x + size, y + 1);
+      }
+      return;
+   }
+
+   method void moveDown() {
+      if ((y + size) < 254) {
+         do Screen.setColor(false);
+         do Screen.drawRectangle(x, y, x + size, y + 1);
+         let y = y + moveGap;
+         do Screen.setColor(true);
+         do Screen.drawRectangle(x, (y + size) - 1, x + size, y + size);
+      }
+      return;
+   }
+
+   method void moveLeft() {
+      if (x > 1) {
+         do Screen.setColor(false);
+         do Screen.drawRectangle((x + size) - 1, y, x + size, y + size);
+         let x = x - moveGap;
+         do Screen.setColor(true);
+         do Screen.drawRectangle(x, y, x + 1, y + size);
+      }
+      return;
+   }
+
+   method void moveRight() {
+      if ((x + size) < 510) {
+         do Screen.setColor(false);
+         do Screen.drawRectangle(x, y, x + 1, y + size);
+         let x = x + moveGap;
+         do Screen.setColor(true);
+         do Screen.drawRectangle((x + size) - 1, y, x + size, y + size);
+      }
+      return;
+   }
+}
