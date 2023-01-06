@@ -75,9 +75,12 @@ class Vertebra {
    }
 
    method void dispose() {
+      var int currentIndex;
+      var DirectionCondition currentCondition;
       let currentIndex = lastConditionIndex;
       while(~(currentIndex < 0)) {
-         do conditions[currentIndex].dispose();
+         let currentCondition = conditions[currentIndex];
+         do currentCondition.dispose();
          let currentIndex = currentIndex - 1;
       }
 
