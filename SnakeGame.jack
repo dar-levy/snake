@@ -4,8 +4,8 @@ class SnakeGame {
    field Array fruits;
    field int fruitsSize;
    field int currentFruitIndex;
-   field int currentDirection;
    field int moveGap;
+   field int currentDirection;
 
    constructor SnakeGame new() {
       let moveGap = 10;
@@ -70,9 +70,11 @@ class SnakeGame {
 
    method void moveToDirection(int Adirection) {
       var Vertebra snakeHead;
+      var int currentDirection;
+      var DirectionCondition conditionMoveTo;
       let snakeHead = snake.getHead();
-      let currentDirection = Adirection;
-      let conditionMoveTo = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
+      let currentDirection = Adirection; // TODO: Check how to effect the field currentDirection
+      let conditionMoveTo = DirectionCondition.new(snakeHead.getX(), snakeHead.getY(), currentDirection);
       do snake.move(conditionMoveTo);
       
       return;
