@@ -69,10 +69,29 @@ class SnakeGame {
       return false;
    }
 
-   method void generateDirectionCondition(int Adirection) {
+   method void moveToDirection(int Adirection) {
       let currentDirection = Adirection;
       let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
-      snake.move(condition);
+      do snake.move(condition);
+      return;
+   }
+
+   method void eatFruit(boolean AisFruit) {
+      if (AisFruit) { 
+         snake.eat();
+         if (currentFruitIndex < fruitSize) {
+            do fruits[currentFruitIndex].erase();
+            let currentFruitIndex = currentFruitIndex + 1;
+            do fruits[currentFruitIndex].draw();
+         }
+         if (~(currentFruitIndex < fruitSize)) {
+            do fruits[currentFruitIndex].erase();
+            let currentFruitIndex = 0;
+            do fruits[currentFruitIndex].draw();
+         }
+      }
+
+      return;
    }
 
    /** Runs the game: handles the user's inputs and moves the square accordingly */
@@ -92,28 +111,17 @@ class SnakeGame {
             let isLoose = isNextMoveNotValid();
             let snakeHead = snake.vertebras[snake.headIndex];
             let condition = DirectionCondition.new(-1, -1, -1);
-            if (isFruit) { 
-               snake.eat();
-               if (currentFruitIndex < fruitSize) {
-                  do fruits[currentFruitIndex].erase();
-                  let currentFruitIndex = currentFruitIndex + 1;
-                  do fruits[currentFruitIndex].draw();
-               }
-               if (~(currentFruitIndex < fruitSize)) {
-                  do fruits[currentFruitIndex].erase();
-                  let currentFruitIndex = 0;
-                  do fruits[currentFruitIndex].draw();
-               }
-            }
+            do eatFruit(isFruit);
             if ((~(isFruit)) & (~(exit))){ do snake.move(condition);}
             if (isLoose) { Output.printString("GameOver")}
             if (exit) { Output.printString("See you next time")}
          }
+
          if (key = 81)  { let exit = true; }     // q key
-         if (key = 131) { do generateDirectionCondition(1); } // up arrow
-         if (key = 133) { do generateDirectionCondition(2); } // down arrow
-         if (key = 130) { do generateDirectionCondition(3); } // left arrow
-         if (key = 132) { do generateDirectionCondition(4); } // right arrow
+         if (key = 131) { do moveToDirection(1); } // up arrow
+         if (key = 133) { do moveToDirection(2); } // down arrow
+         if (key = 130) { do moveToDirection(3); } // left arrow
+         if (key = 132) { do moveToDirection(4); } // right arrow
 
          // waits for the key to be released
          while (~(key = 0)) {
@@ -122,19 +130,7 @@ class SnakeGame {
             let isLoose = isNextMoveNotValid();
             let snakeHead = snake.vertebras[snake.headIndex];
             let condition = DirectionCondition.new(-1, -1, -1);
-            if (isFruit) { 
-               snake.eat();
-               if (currentFruitIndex < fruitSize) {
-                  do fruits[currentFruitIndex].erase();
-                  let currentFruitIndex = currentFruitIndex + 1;
-                  do fruits[currentFruitIndex].draw();
-               }
-               if (~(currentFruitIndex < fruitSize)) {
-                  do fruits[currentFruitIndex].erase();
-                  let currentFruitIndex = 0;
-                  do fruits[currentFruitIndex].draw();
-               }
-            }
+            do eatFruit(isFruit);
             if ((~(isFruit)) & (~(exit))){ do snake.move(condition);}
             if (isLoose) { Output.printString("GameOver")}
             if (exit) { Output.printString("See you next time")}
