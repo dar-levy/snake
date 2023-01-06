@@ -40,6 +40,8 @@ class Vertebra {
    method void addCondition(DirectionCondition condition) {
       let lastConditionIndex = lastConditionIndex + 1;
       let conditions[lastConditionIndex] = condition;
+
+      return;
    }
 
    method void moveByDirection(int direction) {
