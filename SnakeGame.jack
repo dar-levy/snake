@@ -66,8 +66,8 @@ class SnakeGame {
    method void moveToDirection(int Adirection) {
       let snakeHead = snake.vertebras[snake.headIndex];
       let currentDirection = Adirection;
-      let condition = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
-      do snake.move(condition);
+      let conditionMoveTo = DirectionCondition.new(snakeHead.x, snakeHead.y, currentDirection);
+      do snake.move(conditionMoveTo);
       
       return;
    }
