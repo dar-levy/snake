@@ -74,16 +74,10 @@ class SnakeGame {
 
    method void eatFruit() {
       do snake.eat(fruits[currentFruitIndex]);
-      if (currentFruitIndex < fruitSize) {
-         do fruits[currentFruitIndex].erase();
-         let currentFruitIndex = currentFruitIndex + 1;
-         do fruits[currentFruitIndex].draw();
-      }
-      if (~(currentFruitIndex < fruitSize)) {
-         do fruits[currentFruitIndex].erase();
-         let currentFruitIndex = 0;
-         do fruits[currentFruitIndex].draw();
-      }
+      do fruits[currentFruitIndex].erase();
+      if (currentFruitIndex < fruitSize) { let currentFruitIndex = currentFruitIndex + 1; }
+      if (~(currentFruitIndex < fruitSize)) { let currentFruitIndex = 0; }
+      do fruits[currentFruitIndex].draw();
 
       return;
    }
