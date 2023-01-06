@@ -11,6 +11,7 @@ class SnakeGame {
       let moveGap = 10;
       let fruitsSize = 5;
       let snake = Snake.new();
+      let currentDirection = 4;
       let currentFruitIndex = 0;
       let fruits = Array.new(fruitsSize);
       let fruits[0] = Fruit.new(50,50);
@@ -44,7 +45,7 @@ class SnakeGame {
       return true;
    }
 
-   method void isNextMoveFruit() {
+   method boolean isNextMoveFruit() {
       let snakeHead = snake.vertebras[snake.headIndex];
       let fruit = fruits[currentFruitIndex];
       if(snakeHead.currentDirection = 1) { if ((snakeHead.x = fruit.x) & (snake.y + moveGap = fruit.y)) { return true; } }
