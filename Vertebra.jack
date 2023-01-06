@@ -1,7 +1,7 @@
 // This file is part of www.nand2tetris.org
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
-// File name: projects/09/Square/Square.jack
+// File name: projects/09/Snake/Snake.jack
 
 class Vertebra {
 
@@ -11,11 +11,13 @@ class Vertebra {
    field int currentDirection;
    field int lastConditionIndex;
    field int currentConditionIndex;
+   field int moveGap;
 
    constructor Vertebra new(int Ax, int Ay, int Asize) {
       let x = Ax;
       let y = Ay;
       let size = Asize;
+      let moveGap = 10;
       let currentDirection = 4;
       let lastConditionIndex = 0;
       let conditions = function Array new(50)
@@ -27,12 +29,12 @@ class Vertebra {
    method void move(DirectionCondition condition) {
       addCondition(condition);
       if((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
-         moveByDirection(conditions[currentConditionIndex].direction);
+         do moveByDirection(conditions[currentConditionIndex].direction);
          currentDirection = conditions[currentConditionIndex].direction;
       }
 
       if(~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))){
-         moveByDirection(currentDirection);
+         do moveByDirection(currentDirection);
       }
       
       currentConditionIndex = currentConditionIndex + 1;
@@ -66,7 +68,7 @@ class Vertebra {
       if (y > 1) {
          do Screen.setColor(false);
          do Screen.drawRectangle(x, (y + size) - 1, x + size, y + size);
-         let y = y - 2;
+         let y = y - moveGap;
          do Screen.setColor(true);
          do Screen.drawRectangle(x, y, x + size, y + 1);
       }
@@ -77,7 +79,7 @@ class Vertebra {
       if ((y + size) < 254) {
          do Screen.setColor(false);
          do Screen.drawRectangle(x, y, x + size, y + 1);
-         let y = y + 2;
+         let y = y + moveGap;
          do Screen.setColor(true);
          do Screen.drawRectangle(x, (y + size) - 1, x + size, y + size);
       }
@@ -88,7 +90,7 @@ class Vertebra {
       if (x > 1) {
          do Screen.setColor(false);
          do Screen.drawRectangle((x + size) - 1, y, x + size, y + size);
-         let x = x - 2;
+         let x = x - moveGap;
          do Screen.setColor(true);
          do Screen.drawRectangle(x, y, x + 1, y + size);
       }
@@ -99,7 +101,7 @@ class Vertebra {
       if ((x + size) < 510) {
          do Screen.setColor(false);
          do Screen.drawRectangle(x, y, x + 1, y + size);
-         let x = x + 2;
+         let x = x + moveGap;
          do Screen.setColor(true);
          do Screen.drawRectangle((x + size) - 1, y, x + size, y + size);
       }

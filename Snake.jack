@@ -1,27 +1,29 @@
 class Snake {
-    field Array Vertebras;
-    field int HeadIndex;
+    field Array vertebras;
+    field int headIndex;
 
     constructor Snake new(int Ax, int Ay, int Asize) {
-        let Vertebras = function Array new(50);
-        Vertebras[0] = Vertebra.new(0, 0, 10);
-        do Vertebras[0].draw();
+        let vertebras = function Array new(50);
+        vertebras[0] = Vertebra.new(0, 0, 10);
+        do vertebras[0].draw();
         return this;
     }
     
     method void move(DirectionCondition condition) {
-        currentIndex = HeadIndex;
-        while(~(currentIndex < 0)) {
-            Vertebras[currentIndex].move(condition);
+        currentIndex = headIndex;
+        while((~(currentIndex < 0)) & (~(condition.x = -1))) {
+            do vertebras[currentIndex].move(condition);
             currentIndex = currentIndex - 1;
         }
+
+        return;
     }
 
     // TODO: Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
     method void eat() {
-        let Head = Vertebras[HeadIndex];
-        HeadIndex = HeadIndex + 1;
-        Vertebras[HeadIndex] = Head; //Vertebra.new(HeadIndex.x, HeadIndex.y, HeadIndex.currentDirection, 10)
+        let Head = vertebras[headIndex];
+        headIndex = headIndex + 1;
+        vertebras[headIndex] = Head; //Vertebra.new(headIndex.x, headIndex.y, headIndex.currentDirection, 10)
         // TODO: Don't forget to dispose fruit
 
         return;
@@ -29,8 +31,8 @@ class Snake {
 
     method void changeDirection(Condition DirectionCondition) {
         let currentIndex = 0;
-        while(~(currentIndex = HeadIndex + 1)) {
-            do Vertebras[currentIndex].AddDirectionCondition(DirectionCondition);
+        while(~(currentIndex = headIndex + 1)) {
+            do vertebras[currentIndex].AddDirectionCondition(DirectionCondition);
             currentIndex = currentIndex + 1;
         }
 
@@ -38,13 +40,13 @@ class Snake {
     }
 
     method void dispose() {
-        let currentIndex = HeadIndex;
+        let currentIndex = headIndex;
         while(~(currentIndex = -1)) {
-            Vertebras[currentIndex].dispose();
+            do vertebras[currentIndex].dispose();
             currentIndex = currentIndex - 1;
         }
 
-        do Vertebras.dispose();
+        do vertebras.dispose();
         do Memory.deAlloc(this);
         
         return;

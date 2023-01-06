@@ -5,14 +5,14 @@ class Fruit {
     constructor Fruit new(int Ax, int Ay) {
         let x = Ax;
         let y = Ay;
-        let radius = 5;
+        let size = 10;
         do draw();
         return this;
     }
 
     method void draw() {
       do Screen.setColor(true);
-      do Screen.drawCircle(x, y, radius);
+      do Screen.drawRectangle(x, y, x+size, y+size);
       return;
    }
 
