@@ -1,3 +1,4 @@
+
 class Snake {
     field Array vertebras;
     field int headIndex;

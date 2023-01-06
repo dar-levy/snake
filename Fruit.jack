@@ -1,3 +1,4 @@
+
 class Fruit {
     field int x, y;
     field int radius;

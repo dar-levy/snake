@@ -1,3 +1,4 @@
+
 class DirectionCondition {
     field int x, y;
     field String direction;
