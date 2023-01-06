@@ -64,10 +64,10 @@ class SnakeGame {
       var Fruit fruit;
       let snakeHead = snake.getHead();
       let fruit = fruits[currentFruitIndex];
-      if(snakeHead.getCurrentDirection() = 1) { if ((snakeHead.getX() = fruit.getX()) & (snake.getY() + moveGap = fruit.getY())) { return true; } }
-      if(snakeHead.getCurrentDirection() = 2) { if ((snakeHead.getX() = fruit.getX()) & (snake.getY() - moveGap = fruit.getY())) { return true; } }
-      if(snakeHead.getCurrentDirection() = 3) { if ((snakeHead.getX() - moveGap = fruit.getX()) & (snake.getY() = fruit.getY())) { return true; } }
-      if(snakeHead.getCurrentDirection() = 4) { if ((snakeHead.getX() + moveGap = fruit.getX()) & (snake.getY() = fruit.getY())) { return true; } }
+      if(snakeHead.getCurrentDirection() = 1) { if ((snakeHead.getX() = fruit.getX()) & (snakeHead.getY() + moveGap = fruit.getY())) { return true; } }
+      if(snakeHead.getCurrentDirection() = 2) { if ((snakeHead.getX() = fruit.getX()) & (snakeHead.getY() - moveGap = fruit.getY())) { return true; } }
+      if(snakeHead.getCurrentDirection() = 3) { if ((snakeHead.getX() - moveGap = fruit.getX()) & (snakeHead.getY() = fruit.getY())) { return true; } }
+      if(snakeHead.getCurrentDirection() = 4) { if ((snakeHead.getX() + moveGap = fruit.getX()) & (snakeHead.getY() = fruit.getY())) { return true; } }
       
       return false;
    }
@@ -85,7 +85,7 @@ class SnakeGame {
    }
 
    method void eatFruit() {
-      var Vertebra currentFruit;
+      var Fruit currentFruit;
       var int currentFruitIndex;
       let currentFruitIndex = getCurrentFruitIndex();
       let currentFruit = fruits[currentFruitIndex];
