@@ -31,7 +31,7 @@ class Snake {
         let head = vertebras[headIndex];
         let headIndex = headIndex + 1;
         let vertebras[headIndex] = Vertebra.new(fruit.getX(), fruit.getY(), head.getSize());
-        let vertebras[headIndex].currentDirection = head.currentDirection;
+        let vertebras[headIndex].setCurrentDirection() = head.getCurrentDirection();
 
         return;
     }
