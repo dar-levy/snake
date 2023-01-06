@@ -30,6 +30,10 @@ class Vertebra {
       return y;
    }
 
+   method int getSize() {
+      return size;
+   }
+
    method int getCurrentDirection() {
       return currentDirection;
    }

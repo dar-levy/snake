@@ -27,9 +27,10 @@ class Snake {
     }
 
     method void eat(Fruit fruit) {
+        var Vertebra head;
         let head = vertebras[headIndex];
         let headIndex = headIndex + 1;
-        let vertebras[headIndex] = Vertebra.new(fruit.x, fruit.y, head.size);
+        let vertebras[headIndex] = Vertebra.new(fruit.getX(), fruit.getY(), head.getSize());
         let vertebras[headIndex].currentDirection = head.currentDirection;
 
         return;
