@@ -1,6 +1,5 @@
 
 class Vertebra {
-
    field int x, y;
    field int size;
    field Array conditions;
@@ -19,27 +18,29 @@ class Vertebra {
       let conditions = function Array new(50)
       let currentConditionIndex = 0;
       do draw();
+
       return this;
    }
 
    method void move(DirectionCondition condition) {
-      addCondition(condition);
+      do addCondition(condition);
       if((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)){
          do moveByDirection(conditions[currentConditionIndex].direction);
-         currentDirection = conditions[currentConditionIndex].direction;
+         let currentDirection = conditions[currentConditionIndex].direction;
       }
 
       if(~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))){
          do moveByDirection(currentDirection);
       }
       
-      currentConditionIndex = currentConditionIndex + 1;
+      let currentConditionIndex = currentConditionIndex + 1;
+      
       return;
    }
 
    method void addCondition(DirectionCondition condition) {
-      conditions[lastConditionIndex + 1] = condition;
-      lastConditionIndex = lastConditionIndex + 1;
+      let conditions[lastConditionIndex + 1] = condition;
+      let lastConditionIndex = lastConditionIndex + 1;
    }
 
    method void moveByDirection(int direction) {

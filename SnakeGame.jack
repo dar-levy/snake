@@ -25,6 +25,8 @@ class SnakeGame {
       let fruits[2] = Fruit.new(70,70);
       let fruits[3] = Fruit.new(100,100);
       let fruits[4] = Fruit.new(170,170);
+
+      return;
    }
 
    /** Disposes this game. */
@@ -36,6 +38,7 @@ class SnakeGame {
          let currentFruitIndex = currentFruitIndex + 1;
       }
       do Memory.deAlloc(this);
+
       return;
    }
 
@@ -70,7 +73,7 @@ class SnakeGame {
    }
 
    method void eatFruit() {
-      snake.eat();
+      do snake.eat();
       if (currentFruitIndex < fruitSize) {
          do fruits[currentFruitIndex].erase();
          let currentFruitIndex = currentFruitIndex + 1;
@@ -90,8 +93,8 @@ class SnakeGame {
       let condition = DirectionCondition.new(-1, -1, -1);
       if ((~(isFruit)) & (~(exit))) { do snake.move(condition);}
       if (isFruit) { do eatFruit(isFruit); }
-      if (AisLoose) { Output.printString("GameOver"); }
-      if (Aexit) { Output.printString("See you next time"); }
+      if (AisLoose) { do Output.printString("GameOver"); }
+      if (Aexit) { do Output.printString("See you next time"); }
       
       return;
    }

@@ -5,27 +5,25 @@ class Snake {
 
     constructor Snake new(int Ax, int Ay, int Asize) {
         let vertebras = function Array new(50);
-        vertebras[0] = Vertebra.new(0, 0, 10);
+        let vertebras[0] = Vertebra.new(0, 0, 10);
         do vertebras[0].draw();
         return this;
     }
     
     method void move(DirectionCondition condition) {
-        currentIndex = headIndex;
+        let currentIndex = headIndex;
         while((~(currentIndex < 0)) & (~(condition.x = -1))) {
             do vertebras[currentIndex].move(condition);
-            currentIndex = currentIndex - 1;
+            let currentIndex = currentIndex - 1;
         }
 
         return;
     }
 
-    // TODO: Eating shall happen only if the next move of head will be the fruit (direction is right & following coordinates are of the fruit)
     method void eat() {
         let Head = vertebras[headIndex];
-        headIndex = headIndex + 1;
-        vertebras[headIndex] = Head; //Vertebra.new(headIndex.x, headIndex.y, headIndex.currentDirection, 10)
-        // TODO: Don't forget to dispose fruit
+        let headIndex = headIndex + 1;
+        let vertebras[headIndex] = Head;
 
         return;
     }
@@ -34,7 +32,7 @@ class Snake {
         let currentIndex = 0;
         while(~(currentIndex = headIndex + 1)) {
             do vertebras[currentIndex].AddDirectionCondition(DirectionCondition);
-            currentIndex = currentIndex + 1;
+            let currentIndex = currentIndex + 1;
         }
 
         return;
@@ -44,7 +42,7 @@ class Snake {
         let currentIndex = headIndex;
         while(~(currentIndex = -1)) {
             do vertebras[currentIndex].dispose();
-            currentIndex = currentIndex - 1;
+            let currentIndex = currentIndex - 1;
         }
 
         do vertebras.dispose();
