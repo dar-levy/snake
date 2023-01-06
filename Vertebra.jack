@@ -34,15 +34,25 @@ class Vertebra {
       return currentDirection;
    }
 
+   method DirectionCondition getCurrentConditionIndex() {
+      return currentConditionIndex;
+   }
+
    method void move(DirectionCondition condition) {
+      var int currentDirection;
+      var DirectionCondition currentCondition;
+      var int currentConditionIndex;
+      let currentConditionIndex = getCurrentConditionIndex();
+      let currentCondition = conditions[currentConditionIndex];
       do addCondition(condition);
-      if ((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y)) {
-         do moveByDirection(conditions[currentConditionIndex].direction);
-         let currentDirection = conditions[currentConditionIndex].direction;
+      if ((x=currentCondition.getX()) & (y=currentCondition.getY())) {
+         do moveByDirection(currentCondition.getDirection());
+         let currentDirection = currentCondition.getDirection();
          let currentConditionIndex = currentConditionIndex + 1;
+         let currentCondition = conditions[currentConditionIndex];
       }
 
-      if (~((x=conditions[currentConditionIndex].x) & (y=conditions[currentConditionIndex].y))) {
+      if (~((x=currentCondition.getX()) & (y=currentCondition.getY()))) {
          do moveByDirection(currentDirection);
       }
       
