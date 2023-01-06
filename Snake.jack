@@ -30,9 +30,17 @@ class Snake {
 
     method void eat(Fruit fruit) {
         var Vertebra head;
+        var int x;
+        var int y;
+        let x = fruit.getX();
+        let y = fruit.getY();
         let head = vertebras[headIndex];
         let headIndex = headIndex + 1;
-        let vertebras[headIndex] = Vertebra.new(fruit.getX(), fruit.getY(), head.getSize(), head.getCurrentDirection());
+        if(head.getCurrentDirection() = 1) { let y = y + 8; }
+        if(head.getCurrentDirection() = 2) { let y = y - 8; }
+        if(head.getCurrentDirection() = 3) { let x = x - 8; }
+        if(head.getCurrentDirection() = 4) { let x = x + 8; }
+        let vertebras[headIndex] = Vertebra.new(x, y, head.getSize(), head.getCurrentDirection());
 
         return;
     }
