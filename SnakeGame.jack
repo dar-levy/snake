@@ -32,13 +32,13 @@ class SnakeGame {
    /** Disposes this game. */
    method void dispose() {
       do snake.dispose();
-      let currentFruitIndex = 0;
-      while(currentFruitIndex < fruitsSize) {
-         do fruits[currentFruitIndex].dispose();
-         let currentFruitIndex = currentFruitIndex + 1;
+      let currentFrIndex = 0;
+      while(currentFrIndex < fruitsSize) {
+         do fruits[currentFrIndex].dispose();
+         let currentFrIndex = currentFrIndex + 1;
       }
-      do Memory.deAlloc(this);
 
+      do Memory.deAlloc(this);
       return;
    }
 
