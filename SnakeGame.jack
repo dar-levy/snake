@@ -18,6 +18,10 @@ class SnakeGame {
       return this;
    }
 
+   method int getCurrentFruitIndex() {
+      return currentFruitIndex;
+   }
+
    method void constructFruits() {
       let fruits = Array.new(fruitsSize);
       let fruits[0] = Fruit.new(50,50);
@@ -81,11 +85,16 @@ class SnakeGame {
    }
 
    method void eatFruit() {
-      do snake.eat(fruits[currentFruitIndex]);
-      do fruits[currentFruitIndex].erase();
-      if (currentFruitIndex < fruitSize) { let currentFruitIndex = currentFruitIndex + 1; }
-      if (~(currentFruitIndex < fruitSize)) { let currentFruitIndex = 0; }
-      do fruits[currentFruitIndex].draw();
+      var Vertebra currentFruit;
+      var int currentFruitIndex;
+      let currentFruitIndex = getCurrentFruitIndex();
+      let currentFruit = fruits[currentFruitIndex];
+      do snake.eat(currentFruit);
+      do currentFruit.erase();
+      if (currentFruitIndex < fruitsSize) { let currentFruitIndex = currentFruitIndex + 1; } // TODO: Change currentFruitIndex field!!!!  (maybe return)
+      if (~(currentFruitIndex < fruitsSize)) { let currentFruitIndex = 0; }
+      let currentFruit = fruits[currentFruitIndex];
+      do currentFruit.draw();
 
       return;
    }
