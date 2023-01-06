@@ -40,37 +40,27 @@ class Vertebra {
 
    method void move(DirectionCondition condition) {
       var DirectionCondition currentCondition;
-      if (~(condition.getX() = -1)) {
-         if ((~(lastConditionIndex = 0))) {
+      if (~(lastConditionIndex = 0)) {
+         if ((~(lastConditionIndex < currentConditionIndex))) { // If there are conditions in list
             let currentCondition = conditions[currentConditionIndex];
-            do addCondition(condition);
             if ((x=currentCondition.getX()) & (y=currentCondition.getY())) {
-               do moveByDirection(currentCondition.getDirection());
                let currentDirection = currentCondition.getDirection();
-               let currentConditionIndex = currentConditionIndex + 1;
-               let currentCondition = conditions[currentConditionIndex];
-            }
-            
-            if (~((x=currentCondition.getX()) & (y=currentCondition.getY()))) {
                do moveByDirection(currentDirection);
+               let currentConditionIndex = currentConditionIndex + 1;
+               return;
             }
          }
-
-         if(lastConditionIndex = 0) {
-            do moveByDirection(currentDirection);
-         }
       }
 
-      if(condition.getX() = -1) {
-         do moveByDirection(currentDirection);
-      }
-
+      do moveByDirection(currentDirection);   
       return;
    }
 
    method void addCondition(DirectionCondition condition) {
-      let lastConditionIndex = lastConditionIndex + 1;
-      let conditions[lastConditionIndex] = condition;
+      if (~(condition.getX() = -1)) {
+         let lastConditionIndex = lastConditionIndex + 1;
+         let conditions[lastConditionIndex] = condition;
+      }
 
       return;
    }
