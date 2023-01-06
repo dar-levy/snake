@@ -15,7 +15,7 @@ class Vertebra {
       let moveGap = 10;
       let currentDirection = 4;
       let lastConditionIndex = 0;
-      let conditions = function Array new(50)
+      let conditions = Array.new(50)
       let currentConditionIndex = 0;
       do draw();
 

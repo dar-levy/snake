@@ -4,7 +4,7 @@ class Snake {
     field int headIndex;
 
     constructor Snake new() {
-        let vertebras = function Array new(50);
+        let vertebras = Array.new(50);
         let vertebras[0] = Vertebra.new(0, 0, 10);
         return this;
     }
@@ -30,7 +30,7 @@ class Snake {
 
     method void dispose() {
         let currentIndex = headIndex;
-        while(~(currentIndex = -1)) {
+        while(~(currentIndex < 0)) {
             do vertebras[currentIndex].dispose();
             let currentIndex = currentIndex - 1;
         }
