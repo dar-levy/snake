@@ -114,7 +114,7 @@ class SnakeGame {
          do Output.moveCursor(127,225);
          do Output.printString("See you next time");
       }
-      
+
       return;
    }
 

@@ -10,6 +10,18 @@ class DirectionCondition {
         return this;
     }
 
+    method int getX() {
+        return x;
+    }
+
+    method int getY() {
+        return y;
+    }
+
+    method DirectionCondition getDirection() {
+        return direction;
+    }
+
     method void dispose() {
       do Memory.deAlloc(this);
       return;
