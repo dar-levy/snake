@@ -14,9 +14,12 @@ class Snake {
     }
     
     method void move(DirectionCondition condition) {
+        var int currentIndex;
+        var Vertebra currentVertebra;
         let currentIndex = headIndex;
-        while((~(currentIndex < 0)) & (~(condition.x = -1))) {
-            do vertebras[currentIndex].move(condition);
+        while((~(currentIndex < 0)) & (~(condition.getX() = -1))) {
+            let currentVertebra = vertebras[currentIndex];
+            do currentVertebra.move(condition);
             let currentIndex = currentIndex - 1;
         }
 
