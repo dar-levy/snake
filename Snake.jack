@@ -21,7 +21,7 @@ class Snake {
         while(~(currentIndex < 0)) {
             let currentVertebra = vertebras[currentIndex];
             do currentVertebra.addCondition(condition);
-            do currentVertebra.move(condition);
+            do currentVertebra.move();
             let currentIndex = currentIndex - 1;
         }
 

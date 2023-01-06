@@ -38,10 +38,10 @@ class Vertebra {
       return currentDirection;
    }
 
-   method void move(DirectionCondition condition) {
+   method void move() {
       var DirectionCondition currentCondition;
       if (~(lastConditionIndex = 0)) {
-         if ((~(lastConditionIndex < currentConditionIndex))) { // If there are conditions in list
+         if ((~(lastConditionIndex < currentConditionIndex))) {
             let currentCondition = conditions[currentConditionIndex];
             if ((x=currentCondition.getX()) & (y=currentCondition.getY())) {
                let currentDirection = currentCondition.getDirection();
@@ -58,8 +58,8 @@ class Vertebra {
 
    method void addCondition(DirectionCondition condition) {
       if (~(condition.getX() = -1)) {
-         let lastConditionIndex = lastConditionIndex + 1;
          let conditions[lastConditionIndex] = condition;
+         let lastConditionIndex = lastConditionIndex + 1;
       }
 
       return;
