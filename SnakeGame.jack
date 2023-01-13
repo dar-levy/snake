@@ -19,8 +19,8 @@ class SnakeGame {
    method void constructFruits() {
       var Fruit firstFruit;
       let fruits = Array.new(fruitsSize);
-      let fruits[0] = Fruit.new(20,4);
-      let fruits[1] = Fruit.new(30,30);
+      let fruits[0] = Fruit.new(70,4);
+      let fruits[1] = Fruit.new(200,4);
       let fruits[2] = Fruit.new(400,70);
       let fruits[3] = Fruit.new(100,100);
       let fruits[4] = Fruit.new(170,170);
